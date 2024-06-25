@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char gram[20], part1[20], part2[20], modifiedGram[20], newGram[20];
+    int i = 0, j = 0, k = 0, pos = 0;
+
+    printf("Enter Production: S->");
+    gets(gram);
+
+    // Split the input into two parts and find common prefix
+    while (gram[i] != '|') part1[j++] = gram[i++];
+    part1[j] = '\0';  // Terminate part1 string
+    j = 0;
+    i++;  // Skip over '|'
+    while (gram[i] != '\0') part2[j++] = gram[i++];
+    part2[j] = '\0';  // Terminate part2 string
+
+    // Find common prefix between part1 and part2
+    for (i = 0; part1[i] == part2[i]; i++) {
+        modifiedGram[k++] = part1[i];
+        pos = i + 1;  // Position to split at
+    }
+    modifiedGram[k] = 'X';  // Introduce new non-terminal X
+    modifiedGram[k + 1] = '\0';  // Terminate modifiedGram string
+
+    // Create new production rules
+    j = 0;
+    for (i = pos; part1[i] != '\0'; i++) newGram[j++] = part1[i];
+    newGram[j++] = '|';
+    for (i = pos; part2[i] != '\0'; i++) newGram[j++] = part2[i];
+    newGram[j] = '\0';  // Terminate newGram string
+
+    // Print the result
+    printf("\nS->%s", modifiedGram);
+    printf("\nX->%s\n", newGram);
+
+    return 0;
+}
