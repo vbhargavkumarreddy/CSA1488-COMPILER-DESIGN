@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#define SIZE 10
+
+int main() {
+    int num;
+    char production[10][SIZE];
+
+    printf("Enter Number of Production: ");
+    scanf("%d", &num);
+    printf("Enter the grammar as E->E-A :\n");
+    for (int i = 0; i < num; i++) {
+        scanf("%s", production[i]);
+    }
+
+    for (int i = 0; i < num; i++) {
+        char non_terminal = production[i][0];
+        int index = 3; // starting of the string following "->"
+
+        printf("\nGRAMMAR: %s", production[i]);
+        if (non_terminal == production[i][index]) {
+            printf(" is left recursive.\n");
+            char alpha = production[i][index + 1];
+            while (production[i][index] != 0 && production[i][index] != '|')
+                index++;
+            if (production[i][index] != 0) {
+                char beta = production[i][index + 1];
+                printf("Grammar without left recursion:\n");
+                printf("%c->%c%c\'\n", non_terminal, beta, non_terminal);
+                printf("%c\'->%c%c\'|E\n", non_terminal, alpha, non_terminal);
+            } else {
+                printf(" can't be reduced\n");
+            }
+        } else {
+            printf(" is not left recursive.\n");
+        }
+    }
+
+    return 0;
+}
