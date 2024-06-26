@@ -1,0 +1,17 @@
+%{
+%}
+%%
+[a-z.0-9]+@[a-z]+(.com|.in) {printf("\nvalid\n");}
+.+ {printf("\n invalid\n");}
+%%
+int main()
+{
+
+printf("\n enter:");
+yylex();
+
+
+}
+int yywrap()
+{
+}
