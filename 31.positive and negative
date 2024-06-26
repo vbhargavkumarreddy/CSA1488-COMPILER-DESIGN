@@ -1,0 +1,16 @@
+%{
+int pos_count=0;
+int neg_count=0;
+%}
+%%
+^[-][0-9]+ {pos_count++,printf("negative number=%s\n",yytext);}
+[0-9]+ {neg_count++,printf("positive number=%s\n",yytext);}
+%%
+int yywrap(){}
+int main(){
+printf("enter a number:");
+yylex();
+printf("no of positive:%d\n",pos_count);
+printf("no of negitive:%d\n",neg_count);
+return 0;
+}
