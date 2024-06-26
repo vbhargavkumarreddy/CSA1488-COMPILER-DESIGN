@@ -1,0 +1,10 @@
+%%
+[0-9]+ {printf("\nvalid digit \n");}
+.* printf("\ninvalid digit\n");
+%%
+int yywrap(){}
+int main()
+{
+yylex();
+return 0;
+}
