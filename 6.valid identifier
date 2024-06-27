@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<conio.h>
+#include<ctype.h>
+int main()
+{
+	char a[30];
+	int i=1,flag=1;
+	printf("enter a input:");
+	gets(a);
+	if(isalpha(a[0])){
+		flag=1;
+	
+	}
+	else{
+		printf("not valid identifier");
+	}
+	while(a[i]!='\0'){
+		if(!isdigit(a[i]) && !isalpha(a[i])){
+			flag=0;
+			break;
+		}
+		i++;
+	}
+	if(flag=1){
+		printf("valid identifier");
+	}
+	else{
+		printf("not valid identifier");
+	}
+	
+}
+   
